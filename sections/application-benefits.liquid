@@ -1,0 +1,94 @@
+{% if section.settings.enable_benefits %}
+<div class="container">
+    <div class="bene-container">
+        {% if section.settings.ben_title != blank %}<h2>{{section.settings.ben_title}}</h2>{% endif %}
+        <div class="b-container">
+        	{% for block in section.blocks %}
+            	{% if block.type == "benefit_list" %}
+                	{% if block.settings.benefit_item != blank %}
+                    <div class="box box-{{ forloop.index }}" {% if block.settings.enable_color %}style="background-color: {{block.settings.benefit_color}}"{% endif %}>
+                        <p>{{block.settings.benefit_item}}</p>
+                    </div>
+                	{% endif %}
+            	{% endif %}
+            {% endfor %}
+        </div>
+        {% if section.settings.ben_shop_all != blank %}
+        	<a href="{{section.settings.ben_btn_link}}" class="btn btn-primary">{{section.settings.ben_shop_all}}</a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Applications Benefits",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Benefits Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_benefits",
+      "label": "Enable Grid?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ben_title",
+      "label": "Title",
+      "default": "Top 6 Benefits"
+    },
+    {
+      "type": "text",
+      "id": "ben_shop_all",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "ben_btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit_list",
+      "name": "Benefits List",
+      "settings": [
+        {
+          "type" : "textarea",
+          "id": "benefit_item",
+          "label" : "Benefit Item"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_color",
+          "label": "Enable Background Color?",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "benefit_color",
+          "label": "Color Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Applications Benefits",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

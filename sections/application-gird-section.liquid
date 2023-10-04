@@ -1,0 +1,103 @@
+{% if section.settings.enable_imagegrid %}
+<div class="app-container">
+    <div class="a-container">
+        {% for block in section.blocks %}
+            {% if block.type == "grid_item" %}
+                {% if block.settings.item_img != blank %}
+                <div class="container {{ block.settings.item_title | replace: '/', '-' | replace: ' ', '-' | downcase }}" data-filter="{{ block.settings.item_title | replace: '/', '-' | replace: ' ', '-' | downcase }}">
+                    <div class="image">
+                        {% if block.settings.item_link != blank %}
+                        <a href="{{block.settings.item_link}}">
+                        {% endif %}
+                            {% if block.settings.item_img != blank %}
+                            <img src="{{block.settings.item_img | img_url : 'master' }}" alt="{{ block.settings.item_img.alt | escape }}">
+                            {% endif %}
+                        {% if block.settings.item_link != blank %}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% if block.settings.item_title != blank %}
+                    <h3>{{block.settings.item_title}}</h3>
+                    {% endif %}
+                    {% if block.settings.item_content != blank %}
+                    <p>{{block.settings.item_content}}</p>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% if section.settings.shop_all != blank %}<a href="{{section.settings.btn_link}}" class="btn btn-primary">{{section.settings.shop_all}}</a>{% endif %}
+</div> <!-- end:app-container Div -->
+{% endif %}
+
+{% schema %}
+{
+  "name": "Applications Grid Section",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Grid Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_imagegrid",
+      "label": "Enable Grid?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shop_all",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "grid_item",
+      "name": "Grid Item",
+      "settings": [
+        {
+          "type" : "image_picker",
+          "id": "item_img",
+          "label" : "Item Image"
+        },
+        {
+          "type": "url",
+          "id": "item_link",
+          "label": "Item Link"
+        },
+        {
+          "type": "text",
+          "id": "item_title",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "item_content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Applications Grid Section",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

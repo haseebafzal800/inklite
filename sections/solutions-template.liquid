@@ -1,0 +1,134 @@
+{% if section.settings.enable_coupon %}
+<header class="top-head">
+    <div class="head">
+        <span class="top-first-head">
+        {% if section.settings.coupon_link != blank %}
+        <a href="{{section.settings.coupon_link}}" title="{{section.settings.coupon_title}}">
+        {% endif %}
+        {% if section.settings.coupon_title != blank %}{{section.settings.coupon_title}}{% endif %}
+        {% if section.settings.coupon_title != blank %}
+        </a>
+        {% endif %}
+        </span>
+        {% if section.settings.coupon_sub != blank %}<p>{{section.settings.coupon_sub}}</p>{% endif %}
+        {% if section.settings.coupon_code != blank %}<span class="top-second-head"><span>'{{section.settings.coupon_code}}'</span></span>{% endif %}
+    </div>
+</header>
+{% endif %}
+{% if section.settings.enable_banner %}
+<div class="main-container">
+    {% if section.settings.bnr_bg != blank %}
+    <div class="bg-img">
+        <img src="{{section.settings.bnr_bg | img_url : 'master' }}" alt="{{ section.settings.bnr_bg.alt | escape }}">
+    </div>
+    {% endif %}
+    <div class="main-content0">
+        {% if section.settings.bnr_title != blank %}
+        <h1>{{section.settings.bnr_title}}</h1>
+        {% endif %}
+        {% if section.settings.bnr_sub != blank %}
+        <h2>{{section.settings.bnr_sub}}</h2>
+        {% endif %}
+        {% if section.settings.bnr_sub2 != blank %}
+        <h2>{{section.settings.bnr_sub2}}</h2>
+        {% endif %}
+        {% if section.settings.bnr_link != blank %}
+        <a href="{{section.settings.bnr_link}}" class="btn btn-primary">
+        {% if section.settings.button_text != blank %}{{section.settings.button_text}}{% else %}Shop Now{% endif %}
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Solution Page",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Coupon Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_coupon",
+      "label": "Enable Coupon?",
+      "default": true
+    },
+	{
+		"type" : "text",
+		"id": "coupon_title",
+		"label" : "Coupon Title"
+	},
+	{
+		"type" : "url",
+		"id": "coupon_link",
+		"label" : "Coupon Title Link"
+	},
+	{
+		"type" : "text",
+		"id": "coupon_sub",
+		"label" : "Coupon Text"
+	},
+	{
+		"type" : "text",
+		"id": "coupon_code",
+		"label" : "Coupon Code"
+	},
+    {
+      "type": "header",
+      "content": "Main Banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_banner",
+      "label": "Enable Banner?",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "bnr_bg",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "bnr_title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "bnr_sub",
+      "label": "Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "bnr_sub2",
+      "label": "Sub Title 2"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "bnr_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solution Page",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

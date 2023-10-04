@@ -1,0 +1,206 @@
+{% if section.settings.enable_benefits %}
+<div class="choose-container">
+    <div class="container">
+        {% if section.settings.ben_title != blank %}<h2>{{section.settings.ben_title}}</h2>{% endif %}
+        {% if section.settings.enable_imgtxt %}
+        <div class="image-container">
+        	{% for block in section.blocks %}
+            	{% if block.type == "imgtxt_list" %}
+                <a href="{% if block.settings.imgtxt_url != blank %}{{block.settings.imgtxt_url}}{% else %}#{% endif %}" class="container-item">
+                    {% if block.settings.imgtxt_img != blank %}
+                    <div class="container-img">
+                        <img src="{{block.settings.imgtxt_img | img_url : 'master' }}" alt="{{ block.settings.imgtxt_img.alt | escape }}">
+                    </div>
+                    {% endif %}
+                    
+                    <div class="container-content">
+                    	{% if block.settings.imgtxt_title != blank %}
+                        <h3>{{block.settings.imgtxt_title}}</h3>
+                        {% endif %}
+                        {% if block.settings.imgtxt_txt != blank %}
+                        <p>{{block.settings.imgtxt_txt}}</p>
+                        {% endif %}
+                    </div>
+                </a>
+            	{% endif %}
+            {% endfor %}	
+        </div>
+        {% endif %}
+        {% if section.settings.enable_list %}
+        <div class="ul-container">
+            <ul>
+            {% for block in section.blocks %}
+            	{% if block.type == "benefit_list" %}
+                	{% if block.settings.benefit_item1 != blank %}
+                    <li>{{block.settings.benefit_item1}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item2 != blank %}
+                    <li>{{block.settings.benefit_item2}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item3 != blank %}
+                    <li>{{block.settings.benefit_item3}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item4 != blank %}
+                    <li>{{block.settings.benefit_item4}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item5 != blank %}
+                    <li>{{block.settings.benefit_item5}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item6 != blank %}
+                    <li>{{block.settings.benefit_item6}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item7 != blank %}
+                    <li>{{block.settings.benefit_item7}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item8 != blank %}
+                    <li>{{block.settings.benefit_item8}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item9 != blank %}
+                    <li>{{block.settings.benefit_item9}}</li>
+                    {% endif %}
+                    {% if block.settings.benefit_item10 != blank %}
+                    <li>{{block.settings.benefit_item10}}</li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Solution Benefits",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Benefits Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_benefits",
+      "label": "Enable Grid?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ben_title",
+      "label": "Title",
+      "default": "Why Choose Us?"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_imgtxt",
+      "label": "Enable Image over Text?",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_list",
+      "label": "Enable Benefits List?",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "imgtxt_list",
+      "name": "Image over Text",
+      "settings": [
+        {
+          "type" : "image_picker",
+          "id": "imgtxt_img",
+          "label" : "Image"
+        },
+        {
+          "type" : "url",
+          "id": "imgtxt_url",
+          "label" : "Link"
+        },
+        {
+          "type": "text",
+          "id": "imgtxt_title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "imgtxt_txt",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "benefit_list",
+      "name": "Benefits List",
+      "settings": [
+        {
+          "type" : "text",
+          "id": "benefit_item1",
+          "label" : "Benefit Item 1"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item2",
+          "label" : "Benefit Item 2"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item3",
+          "label" : "Benefit Item 3"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item4",
+          "label" : "Benefit Item 4"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item5",
+          "label" : "Benefit Item 5"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item6",
+          "label" : "Benefit Item 6"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item7",
+          "label" : "Benefit Item 7"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item8",
+          "label" : "Benefit Item 8"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item9",
+          "label" : "Benefit Item 9"
+        },
+        {
+          "type" : "text",
+          "id": "benefit_item10",
+          "label" : "Benefit Item 10"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solution Benefits",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

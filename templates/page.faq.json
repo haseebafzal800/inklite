@@ -1,0 +1,132 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "faq-0": {
+          "type": "rich-text",
+          "settings": {
+            "title": "FAQs",
+            "text": "<p>Frequently Asked Questions<\/p>",
+            "align_text": "left"
+          }
+        },
+        "faq-1": {
+          "type": "question",
+          "settings": {
+            "title": "Can I customize my Ink Lite?",
+            "text": "<p>Yes – just keep in mind that the more you customize, the more costs can increase.<\/p>"
+          }
+        },
+        "faq-2": {
+          "type": "question",
+          "settings": {
+            "title": "Is there a warranty?",
+            "text": "<p>Yes. Commercial Grade Lighting has a two year guarantee.  Smaller lights and light strips have a 10 day return policy, but that has been suspended with Covid 19.<\/p>"
+          }
+        },
+        "ba641012-43ce-4ae3-a90a-5b62f1a3376e": {
+          "type": "question",
+          "settings": {
+            "title": "Does the light have batteries or is it plugged in?",
+            "text": "<p>We do both –for lights under a two foot perimeter.<\/p>"
+          }
+        },
+        "04e756ee-e2be-4ed5-84bf-0cd2473aa127": {
+          "type": "question",
+          "settings": {
+            "title": "Do you have all the college licenses?",
+            "text": "<p>No, but we’d like to continually add.   Please let us know if your college or business would like to be added to our list!<\/p>"
+          }
+        },
+        "cd60e24a-803c-4fbe-8afd-cfa505b30c03": {
+          "type": "question",
+          "settings": {
+            "title": "Are you hiring?",
+            "text": "<p>Yes!   We are looking for interns and full time sales people.   Please contact us at <a href=\"mailto:info@InkLites.com\">info@InkLites.com<\/a>, or call 844-INK-LITES<\/p>"
+          }
+        },
+        "f3a89546-15cb-4852-884e-10cb8952d301": {
+          "type": "question",
+          "settings": {
+            "title": "What sizes do you have?",
+            "text": "<p>We do our best to limit the skews, and focus on few sizes, but can craft almost any size upon request:<br\/>Different lengths of LED light strips:<\/p><p>-8 inches x 10 inches<\/p><p>-10 inches x 12 inches <\/p><p>-2 foot x 2 foot<\/p><p>-2 foot x 4 foot<\/p><p>-2 foot x 4 foot <\/p>"
+          }
+        },
+        "faq-3": {
+          "type": "rich-text",
+          "settings": {
+            "title": "Shipping policy",
+            "text": "<p>We proud ourselves on fast, safe shipping<\/p>",
+            "align_text": "left"
+          }
+        },
+        "faq-4": {
+          "type": "question",
+          "settings": {
+            "title": "Where do you ship to?",
+            "text": "<p>We ship all around the world. International rates apply<\/p>"
+          }
+        },
+        "96c51c57-4481-47fe-a0a1-0e143f369e91": {
+          "type": "question",
+          "settings": {
+            "title": "How long will my order take?",
+            "text": "<p>2-3 weeks for custom orders<\/p>"
+          }
+        },
+        "f9f57c03-47bd-4f27-bc27-2a81df879a7a": {
+          "type": "rich-text",
+          "settings": {
+            "title": "Returns and exchanges",
+            "text": "<p>2 year manufactures guarantee on commercial grade custom prints.<\/p>",
+            "align_text": "left"
+          }
+        },
+        "4bdacbe4-838e-4b0a-86fa-a18f95c822f5": {
+          "type": "question",
+          "settings": {
+            "title": "How do I ship my order back to you?",
+            "text": "<p>Smaller lights and light strips have a 10 day return policy, but that has been suspended with Covid 19.<\/p>"
+          }
+        },
+        "2253ab06-53f9-4650-ae23-738a54ac8b49": {
+          "type": "rich-text",
+          "settings": {
+            "title": "Interns\/Influencers\/Careers",
+            "text": "<p>-Ink Lites is looking for university interns and Influencers to help market an promote their brand! <br\/>-EARN WHILE YOU LEARN! <br\/>-Info@InkLites 844-INK-LITES<\/p>",
+            "align_text": "left"
+          }
+        }
+      },
+      "block_order": [
+        "faq-0",
+        "faq-1",
+        "faq-2",
+        "ba641012-43ce-4ae3-a90a-5b62f1a3376e",
+        "04e756ee-e2be-4ed5-84bf-0cd2473aa127",
+        "cd60e24a-803c-4fbe-8afd-cfa505b30c03",
+        "f3a89546-15cb-4852-884e-10cb8952d301",
+        "faq-3",
+        "faq-4",
+        "96c51c57-4481-47fe-a0a1-0e143f369e91",
+        "f9f57c03-47bd-4f27-bc27-2a81df879a7a",
+        "4bdacbe4-838e-4b0a-86fa-a18f95c822f5",
+        "2253ab06-53f9-4650-ae23-738a54ac8b49"
+      ],
+      "settings": {
+        "title": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

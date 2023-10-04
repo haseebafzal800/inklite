@@ -1,0 +1,61 @@
+{% if section.settings.enable_newsletter %}
+<div class="save-container">
+    {% if section.settings.nl_title != blank %}<h3>{{section.settings.nl_title}}</h3>{% endif %}
+    {% if section.settings.nl_sub != blank %}<p>{{section.settings.nl_sub}}</p>{% endif %}
+    {% if section.settings.nl_html != blank %}
+    	{{block.settings.nl_html}}
+    {% else %}
+        <form action="#" class="s-form">
+            <input type="email" placeholder="ENTER YOUR EMAIL">
+            <div class="mail-icon"><a href="#" class="btn-mail"><i class="fa-solid fa-envelope"></i></a></div>
+        </form>
+    {% endif %}
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Solution Newsletter",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_newsletter",
+      "label": "Enable Newsletter?",
+      "default": false
+    },
+	{
+		"type" : "text",
+		"id": "nl_title",
+		"label" : "Title"
+	},
+	{
+		"type" : "textarea",
+		"id": "nl_sub",
+		"label" : "Content"
+	},
+	{
+		"type" : "html",
+		"id": "nl_html",
+		"label" : "Embed Form"
+	}
+  ],
+  "presets": [
+    {
+      "name": "Solution Newsletter",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,105 @@
+{% if section.settings.enable_imagegrid %}
+	<div class="sol-container">
+        <div class="container">
+            {% if section.settings.solution_title != blank %}<h2>{{section.settings.solution_title}}</h2>{% endif %}
+            <div class="grid-container">
+            {% for block in section.blocks %}
+            	{% if block.type == "grid_item" %}
+                    {% if block.settings.item_link != blank %}
+                    <a href="#" class="grid-items grid-item-{{ forloop.index }}">
+                    {% endif %}
+                        <div class="grid-content">
+                            {% if block.settings.item_title != blank %}
+                            <h3>{{block.settings.item_title}}</h3>
+                            {% endif %}
+                        </div>
+                        {% if block.settings.item_img != blank %}
+                        <div class="grid-image">
+                            <img src="{{block.settings.item_img | img_url : 'master' }}" alt="{{ block.settings.item_img.alt | escape }}">
+                        </div>
+                        {% endif %}
+                    {% if block.settings.item_link != blank %}
+                    </a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+            {% if section.settings.shop_all != blank %}
+            	<a href="{{section.settings.btn_link}}" class="btn btn-primary">{{section.settings.shop_all}}</a>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Solution Grid Section",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Grid Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_imagegrid",
+      "label": "Enable Grid?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "solution_title",
+      "label": "Title",
+      "default": "Solutions"
+    },
+    {
+      "type": "text",
+      "id": "shop_all",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "grid_item",
+      "name": "Grid Item",
+      "settings": [
+        {
+          "type" : "image_picker",
+          "id": "item_img",
+          "label" : "Item Image"
+        },
+        {
+          "type": "url",
+          "id": "item_link",
+          "label": "Item Link"
+        },
+        {
+          "type": "text",
+          "id": "item_title",
+          "label": "Heading"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solution Grid Section",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

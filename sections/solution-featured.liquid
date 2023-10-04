@@ -1,0 +1,85 @@
+{% if section.settings.enable_featured %}
+<div class="featured-container">
+    <div class="container">
+        {% if section.settings.feature_title != blank %}<h2>{{section.settings.feature_title}}</h2>{% endif %}
+        <div class="f-container">
+        	{% for block in section.blocks %}
+            	{% assign product = all_products[block.settings.product] %}
+                <div class="f-grid">
+                    <div class="image"><a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: '299x340', crop: 'center' }}" ></a></div>
+                    <div class="f-content">
+                        <p><a href="{{ product.url }}">{{product.title}}</a></p>
+                        <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if section.settings.btn_title != blank %}
+        <a href="{{section.settings.btn_url}}" class="btn btn-primary">{{section.settings.btn_title}}</a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Solution Featured",
+  "max_blocks": 4,
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Featured Products"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_featured",
+      "label": "Enable Featured Products?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "feature_title",
+      "label": "Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "text",
+      "id": "btn_title",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_product",
+      "name": "Featured Product",
+      "settings": [
+        {
+           "type": "product",
+           "id": "product",
+           "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solution Featured",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

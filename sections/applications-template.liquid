@@ -1,0 +1,476 @@
+ 
+ {% if section.settings.enable_coupon %}
+    <header class="top-head">
+        <div class="head">
+            <span class="top-first-head">
+            {% if section.settings.coupon_link != blank %}
+            <a href="{{section.settings.coupon_link}}" title="{{section.settings.coupon_title}}">
+            {% endif %}
+            {% if section.settings.coupon_title != blank %}{{section.settings.coupon_title}}{% endif %}
+            {% if section.settings.coupon_title != blank %}
+            </a>
+            {% endif %}
+            </span>
+            {% if section.settings.coupon_sub != blank %}<p>{{section.settings.coupon_sub}}</p>{% endif %}
+            {% if section.settings.coupon_code != blank %}<span class="top-second-head"><span>'{{section.settings.coupon_code}}'</span></span>{% endif %}
+        </div>
+    </header>
+    {% endif %}
+    {% if section.settings.enable_banner %}
+    <div class="main-container">
+      	<div class="slideshow-main"
+             data-section-id="{{ section.id }}"
+  		 	 data-section-type="slideshow-section"
+             >
+      	{%- if section.settings.autoplay and section.settings.style == 'bars' and section.blocks.size > 1 -%}
+
+          {%- style -%}
+            [data-bars][data-autoplay="true"] .flickity-page-dots .dot:after {
+              animation-duration: {{ section.settings.autoplay_speed | times: 1000 }}ms;
+            }
+          {%- endstyle -%}
+
+          <button type="button" class="visually-hidden slideshow__pause" data-id="{{ section.id }}" aria-live="polite">
+            <span class="slideshow__pause-stop">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-pause" viewBox="0 0 10 13"><g fill="#000" fill-rule="evenodd"><path d="M0 0h3v13H0zM7 0h3v13H7z"/></g></svg>
+              <span class="icon__fallback-text">{{ 'sections.slideshow.pause_slideshow' | t }}</span>
+            </span>
+            <span class="slideshow__pause-play">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-play" viewBox="18.24 17.35 24.52 28.3"><path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/></svg>
+              <span class="icon__fallback-text">{{ 'sections.slideshow.play_slideshow' | t }}</span>
+            </span>
+          </button>
+        {%- endif -%}
+      	<div id="Slideshow-{{ section.id }}"
+             class="slideshow-wrapper hero hero--{{ section.settings.section_height }} hero--{{ section.id }} hero--mobile--{{ section.settings.mobile_height }} "
+          {% if natural_height %}
+            data-natural="true"
+          {% endif %}
+          data-mobile-natural="{{ natural_mobile_height }}"
+          data-autoplay="{{ section.settings.autoplay }}"
+          data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+          {% if section.settings.style == 'arrows' %}
+            data-arrows="true"
+          {% endif %}
+          {% if section.settings.style == 'dots' %}
+            data-dots="true"
+          {% endif %}
+          {% if section.settings.style == 'bars' %}
+            data-dots="true"
+            data-bars="true"
+          {% endif %}
+        >
+    	{% for block in section.blocks %}
+            {% if block.type == "slide_item" %}
+            	<div class="application-slide slideshow__slide" data-index="{{ forloop.index0 }}">
+                	{% if block.settings.slide_video != blank %} 
+                    	<iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ block.settings.slide_video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% else %}
+                        <div class="bg-img slideimg_box">
+                            <img src="{{block.settings.slide_img | img_url : 'master' }}" alt="{{ block.settings.slide_img.alt | escape }}">
+                        </div>
+                        
+                        <div class="main-content0">
+                            {% if block.settings.slide_title != blank %}
+                            <h1>{{block.settings.slide_title}}</h1>
+                            {% endif %}
+                            {% if block.settings.slide_sub != blank %}
+                            <h2>{{block.settings.slide_sub}}</h2>
+                            {% endif %}
+                            {% if block.settings.slide_sub2 != blank %}
+                            <h2>{{block.settings.slide_sub2}}</h2>
+                            {% endif %}
+                            {% if block.settings.slide_link != blank %}
+                            <a href="{{block.settings.slide_link}}" class="btn btn-primary">
+                            {% if block.settings.slide_btn != blank %}{{block.settings.slide_btn}}{% else %}Shop Now{% endif %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+      	</div>
+          	</div>
+
+        <div class="curves">
+            <img src="https://cdn.shopify.com/s/files/1/0455/3326/6085/files/curve_d1381e0b-d843-40cd-9f4f-df01601f0b7d.svg?v=1648128448" alt="Curve">
+        </div>
+    </div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script>
+      $(document).ready(function(){
+        $('.slideimg_box').each(function(){
+          var getIm = $(this).height();
+          //alert(getIm);
+        });
+      });
+      $(".application-slide").on("classChanged", function () {
+            alert("Button Style Change event fired");
+        });
+      var $div = $(".application-slide");
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          var attributeValue = $(mutation.target).prop(mutation.attributeName);
+          //alert("Class attribute changed to:", attributeValue);
+          var getHeight = $(mutation.target).find('.slideimg_box').height();
+          	getHeight = Number(getHeight - 10);
+          $(mutation.target).closest('#Slideshow-applications-template').css({'height':getHeight+'px'})
+        });
+      });
+
+      observer.observe($div[0], {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+	</script>
+    {% endif %}
+    {% if section.settings.enable_wwd %}
+    <div class="hp-container">
+        {% if section.settings.wwd_title != blank %}
+        <h2>{{section.settings.wwd_title}}</h2>
+        {% endif %}
+        {% if section.settings.wwd_content != blank %}
+        <p>{{section.settings.wwd_content}}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="app-container">
+    {% for block in section.blocks %}
+    	{% if block.type == "link_list" %}
+            {% if block.settings.title %}<h2>{{block.settings.title}}</h2>{% endif %}
+                {% assign app_linklist = block.settings.menu %}
+                <div class="res-container">
+                    {% for link in linklists[app_linklist].links %}
+                    <div class="slider-btn {{ link.title | replace: '/', '-' | replace: ' ', '-' | downcase }}" data-filter="{{ link.title | replace: '/', '-' | replace: ' ', '-' | downcase }}"><a href="{{ link.url }}">{{ link.title | escape }}</a></div>
+                    {% endfor %}
+                </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% comment %}
+    
+    <div class="second-main-container">
+        <div class="bg-content">
+            <h2>Make People Say Wow Illuminate Your Space</h2>
+            <p>make your space a little brighter with custom light up signs. they are cost effective by using
+                energy saving led technology.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="bene-container">
+            <h2>Top 6 Benefits</h2>
+            <div class="b-container">
+                <div class="box box-1">
+                    <p>Effective Low Cost Point Of Sale Marketing Than Last</p>
+                </div>
+                <div class="box box-2">
+                    <p>Wayfinding Signage Allows For More Efficiencies In Travel</p>
+                </div>
+                <div class="box box-3">
+                    <p>Branding 24/7/36 Better Merchandising Increases Sales Per Square Foot</p>
+                </div>
+                <div class="box box-4">
+                    <p>Sustainable Energy Savings</p>
+                </div>
+                <div class="box box-5">
+                    <p>Clean Sanitary Surfaces Reduce Pathogens And Provide For A Healthier Work Environment</p>
+                </div>
+                <div class="box box-6">
+                    <p>Better Ligthing In A Work Environment Increases Empolyee Satisfication, Attracts Top Talent
+                        And
+                        Reduces Employee Turnover</p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-primary">shop now</a>
+        </div>
+    </div>
+    <div class="testimonial-container">
+        <div class="t-container">
+            <h2>Testimonials</h2>
+            <div class="image">
+                <img src="https://cdn.shopify.com/s/files/1/0455/3326/6085/files/s-1.jpg?v=1647978231" alt="John">
+            </div>
+            <h3>John David</h3>
+            <q>We love the natural light and clean look, GREAT WORK!</q>
+        </div>
+        <div class="t-container">
+            <h2>Testimonials</h2>
+            <div class="image">
+                <img src="https://cdn.shopify.com/s/files/1/0455/3326/6085/files/s-1.jpg?v=1647978231" alt="John">
+            </div>
+            <h3>Haris Butt</h3>
+            <q>We love the natural light and clean look, GREAT WORK!</q>
+        </div>
+        <div class="t-container">
+            <h2>Testimonials</h2>
+            <div class="image">
+                <img src="https://cdn.shopify.com/s/files/1/0455/3326/6085/files/s-1.jpg?v=1647978231" alt="John">
+            </div>
+            <h3>Joe Smith</h3>
+            <q>We love the natural light and clean look, GREAT WORK!</q>
+        </div>
+    </div>
+    <div class="save-container">
+        <h3>Sign Up And Save</h3>
+        <p>subcribe to get special offers,free giveaways,and once-in-a-lifetime deals.</p>
+        <form action="#" class="s-form">
+            <input type="email" placeholder="ENTER YOUR EMAIL">
+            <div class="mail-icon"><a href="#" class="btn-mail"><i class="fa-solid fa-envelope"></i></a></div>
+        </form>
+    </div>
+    <footer class="foot-container">
+        <div class="image">
+            <a href="#"><img src="https://cdn.shopify.com/s/files/1/0455/3326/6085/files/f-1.png?v=1647978231"
+                    alt="inklites"></a>
+        </div>
+        <p> &copy; ink lites</p>
+    </footer>
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Applications Page",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Coupon Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_coupon",
+      "label": "Enable Coupon?",
+      "default": true
+    },
+	{
+		"type" : "text",
+		"id": "coupon_title",
+		"label" : "Coupon Title"
+	},
+	{
+		"type" : "url",
+		"id": "coupon_link",
+		"label" : "Coupon Title Link"
+	},
+	{
+		"type" : "text",
+		"id": "coupon_sub",
+		"label" : "Coupon Text"
+	},
+	{
+		"type" : "text",
+		"id": "coupon_code",
+		"label" : "Coupon Code"
+	},
+    {
+      "type": "header",
+      "content": "Main Banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_banner",
+      "label": "Enable Banner?",
+      "default": true
+    },
+    {
+        "type": "select",
+        "id": "section_height",
+        "label": "Desktop height",
+        "default": "650px",
+        "options": [
+          {
+            "label": "Natural",
+            "value": "natural"
+          },
+          {
+            "label": "450px",
+            "value": "450px"
+          },
+          {
+            "label": "550px",
+            "value": "550px"
+          },
+          {
+            "label": "650px",
+            "value": "650px"
+          },
+          {
+            "label": "750px",
+            "value": "750px"
+          },
+          {
+            "label": "Full screen",
+            "value": "100vh"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "mobile_height",
+        "label": "Mobile height",
+        "default": "auto",
+        "options": [
+          {
+            "label": "Auto",
+            "value": "auto"
+          },
+          {
+            "label": "250px",
+            "value": "250px"
+          },
+          {
+            "label": "300px",
+            "value": "300px"
+          },
+          {
+            "label": "400px",
+            "value": "400px"
+          },
+          {
+            "label": "500px",
+            "value": "500px"
+          },
+          {
+            "label": "Full screen",
+            "value": "100vh"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "style",
+        "label": "Slide navigation style",
+        "default": "bars",
+        "options": [
+          {
+            "value": "minimal",
+            "label": "Minimal"
+          },
+          {
+            "value": "arrows",
+            "label": "Arrows"
+          },
+          {
+            "value": "bars",
+            "label": "Bars"
+          },
+          {
+            "value": "dots",
+            "label": "Dots"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Auto-change slides",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "autoplay_speed",
+        "label": "Change images every",
+        "default": 7,
+        "min": 5,
+        "max": 10,
+        "step": 1,
+        "unit": "s"
+      },
+    {
+      "type": "header",
+      "content": "What We Do"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_wwd",
+      "label": "Enable WWD?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "wwd_title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "wwd_content",
+      "label": "Content"
+    }
+  ],
+  "blocks": [
+	{
+      "type": "slide_item",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_img",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "slide_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "slide_sub",
+          "label": "Sub Title"
+        },
+        {
+          "type": "text",
+          "id": "slide_sub2",
+          "label": "Sub Title 2"
+        },
+        {
+          "type": "text",
+          "id": "slide_btn",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "slide_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "text",
+          "id": "slide_video",
+          "label": "Add Video ID",
+          "info":"AS5dYYDBlWU"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Applications"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Application Menü"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Applications Page",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

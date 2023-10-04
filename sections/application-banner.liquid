@@ -1,0 +1,50 @@
+{% if section.settings.enable_banner %}
+<div class="second-main-container">
+    <div class="bg-content">
+        {% if section.settings.subbnr_title != blank %}<h2>{{section.settings.subbnr_title}}</h2>{% endif %}
+        {% if section.settings.subbnr_content != blank %}<p>{{section.settings.subbnr_content}}</p>{% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Applications Banner",
+  "settings": [
+  	{
+      "type": "header",
+      "content": "Banner Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_banner",
+      "label": "Enable Banner?",
+      "default": true
+    },
+	{
+		"type" : "text",
+		"id": "subbnr_title",
+		"label" : "Title"
+	},
+	{
+		"type" : "textarea",
+		"id": "subbnr_content",
+		"label" : "Content"
+	}
+  ],
+  "presets": [
+    {
+      "name": "Applications Banner",
+       "blocks": [
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "16472848804f9b283d": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Teams",
+        "home_featured_products": "teams",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "164728492977c78387": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Funny",
+        "home_featured_products": "funny",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "1647284949f2752de9": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Custom Lites",
+        "home_featured_products": "custom-lites",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "164728498454c94576": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Home Page Collection",
+        "home_featured_products": "frontpage",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16472848804f9b283d",
+    "164728492977c78387",
+    "1647284949f2752de9",
+    "164728498454c94576"
+  ]
+}
